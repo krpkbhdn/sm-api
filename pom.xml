@@ -8,6 +8,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>edu.nubip</groupId>
@@ -18,9 +19,17 @@
 
     <packaging>pom</packaging>
 
+    <modules>
+        <module>sm-gateway</module>
+        <module>sm-services</module>
+        <module>sm-gateway</module>
+    </modules>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <java.version>11</java.version>
+        <spring-cloud.version>2020.0.3</spring-cloud.version>
     </properties>
 
 </project>
