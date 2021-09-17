@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sm-auth-service
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/school_meals?currentSchema=sm_auth}
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+
+server:
+  port: 9001
+
