@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="20-09-2021--01-changelog--01-create-table-oauth_client_details" author="Bohdan Krupko">
+        <createTable tableName="oauth_client_details">
+            <column name="client_id" type="varchar(255)" defaultOnNull="false"/>
+            <column name="resource_ids" type="varchar(255)" defaultOnNull="true"/>
+            <column name="client_secret" type="varchar(255)" defaultOnNull="false"/>
+            <column name="scope" type="varchar(256)" defaultOnNull="false"/>
+            <column name="authorized_grant_types" type="varchar(255)" defaultOnNull="false"/>
+            <column name="web_server_redirect_uri" type="varchar(255)" defaultOnNull="true"/>
+            <column name="authorities" type="varchar(255)" defaultOnNull="true"/>
+            <column name="access_token_validity" type="integer" defaultValue="3600"/>
+            <column name="refresh_token_validity" type="integer" defaultValue="7200"/>
+            <column name="additional_information" type="varchar(4096)" defaultOnNull="true"/>
+            <column name="autoapprove" type="varchar(255)" defaultOnNull="true"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="oauth_client_details"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20-09-2021--01-changelog--02-add-primary-key-for-table-oauth_client_details" author="Bohdan Krupko">
+        <addPrimaryKey tableName="oauth_client_details" columnNames="client_id" constraintName="pk_oauth_client_details"/>
+        <rollback>
+            <dropPrimaryKey tableName="oauth_client_details" constraintName="pk_oauth_client_details"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20-09-2021--01-changelog--03-create-table-oauth_client_token" author="Bohdan Krupko">
+        <createTable tableName="oauth_client_token">
+            <column name="token_id" type="varchar(255)" defaultOnNull="false"/>
+            <column name="token" type="longvarbinary" defaultOnNull="false"/>
+            <column name="authentication_id" type="varchar(255)" defaultOnNull="false"/>
+            <column name="user_name" type="varchar(255)" defaultOnNull="false"/>
+            <column name="client_id" type="varchar(255)" defaultOnNull="false"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="oauth_client_token"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20-09-2021--01-changelog--04-add-primary-key-for-table-oauth_client_token" author="Bohdan Krupko">
+        <addPrimaryKey tableName="oauth_client_token" columnNames="authentication_id" constraintName="pk_oauth_client_token"/>
+        <rollback>
+            <dropPrimaryKey tableName="oauth_client_token" constraintName="pk_oauth_client_token"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20-09-2021--01-changelog--05-create-table-oauth_access_token" author="Bohdan Krupko">
+        <createTable tableName="oauth_access_token">
+            <column name="token_id" type="varchar(255)" defaultOnNull="false"/>
+            <column name="token" type="longvarbinary" defaultOnNull="false"/>
+            <column name="authentication_id" type="varchar(255)" defaultOnNull="false"/>
+            <column name="user_name" type="varchar(255)" defaultOnNull="false"/>
+            <column name="client_id" type="varchar(255)" defaultOnNull="false"/>
+            <column name="authentication" type="longvarbinary" defaultOnNull="false"/>
+            <column name="refresh_token" type="varchar(255)" defaultOnNull="false"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="oauth_access_token"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20-09-2021--01-changelog--06-add-primary-key-for-table-oauth_access_token" author="Bohdan Krupko">
+        <addPrimaryKey tableName="oauth_access_token" columnNames="authentication_id" constraintName="pk_oauth_access_token"/>
+        <rollback>
+            <dropPrimaryKey tableName="oauth_access_token" constraintName="pk_oauth_access_token"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20-09-2021--01-changelog--07-create-table-oauth_refresh_token" author="Bohdan Krupko">
+        <createTable tableName="oauth_refresh_token">
+            <column name="token_id" type="varchar(255)" defaultOnNull="false"/>
+            <column name="token" type="longvarbinary" defaultOnNull="false"/>
+            <column name="authentication" type="longvarbinary" defaultOnNull="false"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="oauth_refresh_token"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20-09-2021--01-changelog--08-create-table-oauth_code" author="Bohdan Krupko">
+        <createTable tableName="oauth_code">
+            <column name="code" type="varchar(255)" defaultOnNull="false"/>
+            <column name="authentication" type="longvarbinary" defaultOnNull="false"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="oauth_code"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20-09-2021--01-changelog--09-create-table-oauth_approvals" author="Bohdan Krupko">
+        <createTable tableName="oauth_approvals">
+            <column name="userId" type="varchar(255)"/>
+            <column name="clientId" type="varchar(255)"/>
+            <column name="scope" type="varchar(255)"/>
+            <column name="status" type="varchar(10)"/>
+            <column name="expiresAt" type="timestamp"/>
+            <column name="lastModifiedAt" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
