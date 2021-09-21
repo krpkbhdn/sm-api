@@ -22,7 +22,6 @@
     <modules>
         <module>sm-gateway</module>
         <module>sm-services</module>
-        <module>sm-gateway</module>
     </modules>
 
     <properties>
@@ -30,6 +29,12 @@
         <maven.compiler.target>11</maven.compiler.target>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <spring-oauth2.version>2.3.5.RELEASE</spring-oauth2.version>
+        <spring-jwt.version>1.0.10.RELEASE</spring-jwt.version>
+        <jaxb.version>3.0.2</jaxb.version>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <activation.version>1.1.1</activation.version>
     </properties>
+
 
 </project>
