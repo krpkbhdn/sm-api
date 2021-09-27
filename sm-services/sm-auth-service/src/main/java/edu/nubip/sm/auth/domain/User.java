@@ -23,6 +23,8 @@ public class User implements Serializable {
     private long id;
     @Column(name = "username")
     private String username;
+    @Column(name = "email")
+    private String email;
     @Column(name = "password")
     private String password;
     @Column(name = "account_non_expired")
@@ -42,6 +44,7 @@ public class User implements Serializable {
 
     public User(User user) {
         this.username = user.getUsername();
+        this.email = user.getEmail();
         this.password = user.getPassword();
         this.enabled = user.isEnabled();
         this.accountNonExpired = user.isAccountNonExpired();

@@ -9,6 +9,7 @@
         <createTable tableName="sm_user">
             <column name="id" type="integer8" defaultOnNull="false"/>
             <column name="username" type="varchar(255)" defaultOnNull="false"/>
+            <column name="email" type="varchar(255)" defaultOnNull="false"/>
             <column name="password" type="varchar(255)" defaultOnNull="false"/>
             <column name="account_non_expired" type="boolean" defaultValueBoolean="true"/>
             <column name="account_non_locked" type="boolean" defaultValueBoolean="true"/>
@@ -50,31 +51,7 @@
             <dropUniqueConstraint tableName="role" constraintName="uq_role_name"/>
         </rollback>
     </changeSet>
-    
-    <changeSet id="20-09-2021--02-changelog--06-create-table-permission" author="Bohdan Krupko">
-        <createTable tableName="permission">
-            <column name="id" type="integer" defaultOnNull="false"/>
-            <column name="name" type="varchar(255)" defaultOnNull="false"/>
-        </createTable>
-        <rollback>
-            <dropTable tableName="permission"/>
-        </rollback>
-    </changeSet>
-    
-    <changeSet id="20-09-2021--02-changelog--07-add-primary-key-for-table-permission" author="Bohdan Krupko">
-        <addPrimaryKey tableName="permission" columnNames="id" constraintName="pk_permission"/>
-        <rollback>
-            <dropPrimaryKey tableName="permission" constraintName="pk_permission"/>
-        </rollback>
-    </changeSet>
-    
-    <changeSet id="20-09-2021--02-changelog--08-add-unique-constraint-for-table-permission" author="Bohdan Krupko">
-        <addUniqueConstraint tableName="permission" columnNames="name" constraintName="uq_permission_name"/>
-        <rollback>
-            <dropUniqueConstraint tableName="permission" constraintName="uq_permission_name"/>
-        </rollback>
-    </changeSet>
-    
+
     <changeSet id="20-09-2021--02-changelog--09-create-table-user_role" author="Bohdan Krupko">
         <createTable tableName="user_role">
             <column name="user_id" type="integer8" defaultOnNull="false"/>
@@ -108,40 +85,5 @@
             <dropForeignKeyConstraint baseTableName="user_role" constraintName="fk2_user_role_role"/>
         </rollback>
     </changeSet>
-
-    <changeSet id="20-09-2021--02-changelog--12-create-table-role_permission" author="Bohdan Krupko">
-        <createTable tableName="role_permission">
-            <column name="role_id" type="integer" defaultOnNull="false"/>
-            <column name="permission_id" type="integer" defaultOnNull="false"/>
-        </createTable>
-        <rollback>
-            <dropTable tableName="role_permission"/>
-        </rollback>
-    </changeSet>
-
-    <changeSet id="20-09-2021--02-changelog--13-add-primary-key-for-table-role_permission" author="Bohdan Krupko">
-        <addPrimaryKey tableName="role_permission" columnNames="role_id,permission_id" constraintName="pk_role_permission"/>
-        <rollback>
-            <dropPrimaryKey tableName="role_permission" constraintName="pk_role_permission"/>
-        </rollback>
-    </changeSet>
-
-    <changeSet id="20-09-2021--02-changelog--14-add-foreign-key-for-table-role_permission-permission" author="Bohdan Krupko">
-        <addForeignKeyConstraint baseTableName="role_permission"
-                                 baseColumnNames="role_id"
-                                 referencedTableName="role"
-                                 referencedColumnNames="id"
-                                 constraintName="fk1_role_permission_role"/>
-        <addForeignKeyConstraint baseTableName="role_permission"
-                                 baseColumnNames="permission_id"
-                                 referencedTableName="permission"
-                                 referencedColumnNames="id"
-                                 constraintName="fk2_role_permission_permission"/>
-        <rollback>
-            <dropForeignKeyConstraint baseTableName="role_permission" constraintName="fk1_role_permission_role"/>
-            <dropForeignKeyConstraint baseTableName="role_permission" constraintName="fk2_role_permission_permission"/>
-        </rollback>
-    </changeSet>
-
 
 </databaseChangeLog>

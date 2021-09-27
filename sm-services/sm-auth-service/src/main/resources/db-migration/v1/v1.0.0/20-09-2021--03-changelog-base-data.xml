@@ -114,6 +114,7 @@
         <insert tableName="sm_user">
             <column name="id" value="1"/>
             <column name="username" value="super-admin"/>
+            <column name="email" value="sadmin@sm.com"/>
             <column name="password" value="$2a$10$ByD2GiX9IQp7q3KJ3/6fg.mEh9N62bPuZoIdPr1jcwBxtef48l8qe"/>
             <column name="account_non_expired" value="true"/>
             <column name="account_non_locked" value="true"/>
@@ -123,6 +124,7 @@
         <insert tableName="sm_user">
             <column name="id" value="2"/>
             <column name="username" value="admin"/>
+            <column name="email" value="admin@sm.com"/>
             <column name="password" value="$2a$10$ByD2GiX9IQp7q3KJ3/6fg.mEh9N62bPuZoIdPr1jcwBxtef48l8qe"/>
             <column name="account_non_expired" value="true"/>
             <column name="account_non_locked" value="true"/>

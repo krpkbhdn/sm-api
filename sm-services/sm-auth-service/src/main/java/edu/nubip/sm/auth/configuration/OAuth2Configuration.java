@@ -1,5 +1,6 @@
 package edu.nubip.sm.auth.configuration;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,21 +16,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import javax.sql.DataSource;
 
 @Configuration
+@RequiredArgsConstructor
 public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
     private final DataSource dataSource;
     private final AuthenticationManager authenticationManager;
-
-    public OAuth2Configuration(
-            PasswordEncoder passwordEncoder,
-            DataSource dataSource,
-            AuthenticationManager authenticationManager
-    ) {
-        this.passwordEncoder = passwordEncoder;
-        this.dataSource = dataSource;
-        this.authenticationManager = authenticationManager;
-    }
 
     @Bean
     public JwtAccessTokenConverter tokenEnhancer() {
@@ -44,15 +36,21 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.
-                authenticationManager(authenticationManager)
+        endpoints
+                .authenticationManager(authenticationManager)
                 .tokenStore(tokenStore())
-                .accessTokenConverter(tokenEnhancer());
+                .accessTokenConverter(tokenEnhancer())
+                .pathMapping("/oauth/token", "/auth-service/api/v1/oauth/token")
+                .pathMapping("/oauth/token_key", "/auth-service/api/v1/oauth/token_key")
+                .pathMapping("/oauth/check_token", "/auth-service/api/v1/oauth/check_token");
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+        security
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()")
+                .allowFormAuthenticationForClients();
     }
 
     @Override
