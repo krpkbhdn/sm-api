@@ -22,6 +22,8 @@
     <modules>
         <module>sm-gateway</module>
         <module>sm-services</module>
+        <module>sm-dictionary-service</module>
+        <module>sm-dictionary-service</module>
     </modules>
 
     <properties>
