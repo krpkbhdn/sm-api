@@ -1,16 +1,16 @@
 package edu.nubip.sm.dictionary.web;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import edu.nubip.sm.dictionary.domain.Region;
+import edu.nubip.sm.dictionary.service.RegionService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/dictionary/api/v1")
-public class RegionRestController {
+@RequestMapping("/dictionary/api/v1/region")
+public class RegionRestController extends AbstractRestController<Region, Integer, RegionService> {
 
-    @GetMapping("/")
-    public String hello() {
-        return "Hello World";
+    public RegionRestController(RegionService service) {
+        super(service);
     }
 
 }
