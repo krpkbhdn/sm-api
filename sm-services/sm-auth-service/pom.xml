@@ -14,16 +14,4 @@
     <name>SM Auth</name>
     <description>School Meals Authorization Service</description>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-jwt</artifactId>
-            <version>${spring-jwt.version}</version>
-        </dependency>
-
-    </dependencies>
-
-
-
 </project>

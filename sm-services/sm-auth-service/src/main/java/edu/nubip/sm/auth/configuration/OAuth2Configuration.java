@@ -1,6 +1,7 @@
 package edu.nubip.sm.auth.configuration;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,9 +24,16 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
     private final DataSource dataSource;
     private final AuthenticationManager authenticationManager;
 
+    @Value("${jwt.private-key}")
+    private String privateKey;
+    @Value("${jwt.public-key}")
+    private String publicKey;
+
     @Bean
     public JwtAccessTokenConverter tokenEnhancer() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey(privateKey);
+        converter.setVerifierKey(publicKey);
         return converter;
     }
 

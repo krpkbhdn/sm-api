@@ -5,6 +5,7 @@ import edu.nubip.sm.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class UserRestController {
 
     private final UserService userService;
 
+    @PreAuthorize("authentication.authenticated")
     @GetMapping("/")
     public ResponseEntity<List<User>> getAll() {
         List<User> users = userService.findAll();
