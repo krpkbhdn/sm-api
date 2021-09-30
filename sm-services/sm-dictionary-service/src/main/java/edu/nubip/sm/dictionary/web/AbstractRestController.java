@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 public abstract class AbstractRestController<T, ID, S extends CrudService<T, ID>> {
-    private final S service;
+    protected final S service;
 
     @GetMapping("/")
     public ResponseEntity<?> getAll() {
