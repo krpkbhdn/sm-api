@@ -167,8 +167,8 @@
         <createTable tableName="age_group">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="name" type="varchar(255)"/>
-            <column name="from" type="integer"/>
-            <column name="to" type="integer"/>
+            <column name="from_age" type="integer"/>
+            <column name="to_age" type="integer"/>
         </createTable>
         <rollback>
             <dropTable tableName="age_group"/>

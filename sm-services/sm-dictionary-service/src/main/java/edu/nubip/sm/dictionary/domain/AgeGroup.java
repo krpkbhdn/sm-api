@@ -18,9 +18,9 @@ public class AgeGroup implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "from")
+    @Column(name = "from_age")
     private int from;
-    @Column(name = "to")
+    @Column(name = "to_age")
     private int to;
     @Column(name = "name")
     private String name;
