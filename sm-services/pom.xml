@@ -18,6 +18,7 @@
         <module>sm-auth-service</module>
         <module>sm-dictionary-service</module>
         <module>sm-profile-service</module>
+        <module>sm-food-service</module>
     </modules>
 
     <packaging>pom</packaging>
