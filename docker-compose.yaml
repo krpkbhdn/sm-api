@@ -1,5 +1,6 @@
-services:
+version: "2.1"
 
+services:
   db:
     build:
       context: ./docker/postgres
@@ -9,7 +10,24 @@ services:
       - 5432:5432
     volumes:
       - C:\docker\volume\sm-api\postgres-13.4-alpine\:/var/lib/postgresql/data
-    restart: always
+    restart: on-failure
+    networks:
+      - sm-api-network
+
+  sm-auth-service:
+    image: school-meals/sm-auth-service:latest
+    container_name: sm-auth-service
+    ports:
+      - 9001:9001
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_auth
+      DATASOURCE_USER: sm_user
+      DATASOURCE_PASSWORD: P@ssw0rd
+    restart: on-failure
     networks:
       - sm-api-network
 
@@ -18,13 +36,11 @@ services:
       context: ./docker/nginx
       dockerfile: Dockerfile
     container_name: nginx
+    depends_on:
+      - sm-auth-service
     ports:
       - 80:80
       - 443:443
-    links:
-      - db
-    volumes:
-      - C:\docker\volume\sm-api\nginx-reverse-proxy
     networks:
       - sm-api-network
 

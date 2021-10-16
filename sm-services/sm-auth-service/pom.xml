@@ -14,4 +14,12 @@
     <name>SM Auth</name>
     <description>School Meals Authorization Service</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${activation.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

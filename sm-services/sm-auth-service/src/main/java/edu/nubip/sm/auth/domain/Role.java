@@ -23,12 +23,6 @@ public class Role implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "role_permission", joinColumns = {
-            @JoinColumn(name = "role_id", referencedColumnName = "id")}, inverseJoinColumns = {
-            @JoinColumn(name = "permission_id", referencedColumnName = "id")})
-    private List<Permission> permissions;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
