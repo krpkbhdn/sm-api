@@ -19,6 +19,7 @@
         <module>sm-dictionary-service</module>
         <module>sm-profile-service</module>
         <module>sm-food-service</module>
+        <module>sm-menu-service</module>
     </modules>
 
     <packaging>pom</packaging>
