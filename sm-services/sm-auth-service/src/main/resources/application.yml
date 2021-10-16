@@ -5,8 +5,8 @@ spring:
     name: sm-auth-service
   datasource:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/school_meals?currentSchema=sm_auth}
-    username: ${DATASOURCE_USER:postgres}
-    password: ${DATASOURCE_PASSWORD:postgres}
+    username: ${DATASOURCE_USER:sm_user}
+    password: ${DATASOURCE_PASSWORD:P@ssw0rd}
   liquibase:
     change-log: classpath:db-migration/changelog.xml
 
