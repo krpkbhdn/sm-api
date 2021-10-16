@@ -20,6 +20,7 @@
         <module>sm-profile-service</module>
         <module>sm-food-service</module>
         <module>sm-menu-service</module>
+        <module>sm-analytic-service</module>
     </modules>
 
     <packaging>pom</packaging>
