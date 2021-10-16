@@ -1,0 +1,33 @@
+services:
+
+  db:
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
+    container_name: db
+    ports:
+      - 5432:5432
+    volumes:
+      - C:\docker\volume\sm-api\postgres-13.4-alpine\:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - sm-api-network
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - db
+    volumes:
+      - C:\docker\volume\sm-api\nginx-reverse-proxy
+    networks:
+      - sm-api-network
+
+networks:
+  sm-api-network:
+    driver: bridge

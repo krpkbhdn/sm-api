@@ -48,9 +48,9 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
                 .authenticationManager(authenticationManager)
                 .tokenStore(tokenStore())
                 .accessTokenConverter(tokenEnhancer())
-                .pathMapping("/oauth/token", "/auth-service/api/v1/oauth/token")
-                .pathMapping("/oauth/token_key", "/auth-service/api/v1/oauth/token_key")
-                .pathMapping("/oauth/check_token", "/auth-service/api/v1/oauth/check_token");
+                .pathMapping("/oauth/token", "/api/v1/oauth/token")
+                .pathMapping("/oauth/token_key", "/api/v1/oauth/token_key")
+                .pathMapping("/oauth/check_token", "/api/v1/oauth/check_token");
     }
 
     @Override
