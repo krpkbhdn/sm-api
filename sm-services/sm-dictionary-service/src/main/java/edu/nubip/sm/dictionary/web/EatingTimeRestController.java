@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/dictionary/api/v1/eating-time")
+@RequestMapping("/api/v1/eating-time")
 public class EatingTimeRestController extends AbstractRestController<EatingTime, Integer, EatingTimeService> {
 
     public EatingTimeRestController(EatingTimeService service) {

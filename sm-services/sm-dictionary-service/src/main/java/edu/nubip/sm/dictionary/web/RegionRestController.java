@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/dictionary/api/v1/region")
+@RequestMapping("/api/v1/region")
 public class RegionRestController extends AbstractRestController<Region, Integer, RegionService> {
 
     public RegionRestController(RegionService service) {
