@@ -5,16 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <changeSet id="20-09-2021--03-changelog--01-add-client" author="Bohdan Krupko">
+    <changeSet id="03-changelog--01-add-client" author="Bohdan Krupko">
         <insert tableName="oauth_client_details">
             <column name="client_id" value="web-app" />
             <column name="client_secret" value="$2a$10$ByD2GiX9IQp7q3KJ3/6fg.mEh9N62bPuZoIdPr1jcwBxtef48l8qe" />
-            <column name="resource_ids" value="all" />
+            <column name="resource_ids" value="sm-auth,sm-analytic,sm-dictionary,sm-food,sm-menu,sm-profile" />
             <column name="scope" value="READ,WRITE" />
-            <column name="authorized_grant_types" value="authorization_code,password,refresh_token,implicit" />
+            <column name="authorized_grant_types" value="password,refresh_token,client_credentials" />
             <column name="web_server_redirect_uri" value="http://localhost:3200" />
             <column name="access_token_validity" value="7200" />
-            <column name="refresh_token_validity" value="14800" />
+            <column name="refresh_token_validity" value="86400" />
             <column name="additional_information" value="{}" />
         </insert>
         <rollback>
@@ -24,7 +24,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--03-changelog--02-add-roles" author="Bohdan Krupko">
+    <changeSet id="03-changelog--02-add-roles" author="Bohdan Krupko">
         <insert tableName="role">
             <column name="id" value="1"/>
             <column name="name" value="ROLE_SUPER_ADMIN"/>
@@ -48,7 +48,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--03-changelog--05-add-user" author="Bohdan Krupko">
+    <changeSet id="03-changelog--05-add-user" author="Bohdan Krupko">
         <insert tableName="sm_user">
             <column name="id" value="1"/>
             <column name="username" value="super-admin"/>
@@ -76,7 +76,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--03-changelog--06-relation-user_role" author="Bohdan Krupko">
+    <changeSet id="03-changelog--06-relation-user_role" author="Bohdan Krupko">
         <insert tableName="user_role">
             <column name="user_id" value="1"/>
             <column name="role_id" value="1"/>

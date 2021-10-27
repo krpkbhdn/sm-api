@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
-    <include file="20-09-2021--01-changelog-base-oauth-tables.xml" relativeToChangelogFile="true"/>
-    <include file="20-09-2021--02-changelog-user-tables.xml" relativeToChangelogFile="true"/>
-    <include file="20-09-2021--03-changelog-base-data.xml" relativeToChangelogFile="true"/>
+    <include file="01-changelog-base-oauth-tables.xml" relativeToChangelogFile="true"/>
+    <include file="02-changelog-user-tables.xml" relativeToChangelogFile="true"/>
+    <include file="03-changelog-base-data.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

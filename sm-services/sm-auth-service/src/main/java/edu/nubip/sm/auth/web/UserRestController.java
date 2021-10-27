@@ -18,7 +18,7 @@ public class UserRestController {
 
     private final UserService userService;
 
-    @PreAuthorize("authentication.authenticated")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/")
     public ResponseEntity<List<User>> getAll() {
         List<User> users = userService.findAll();

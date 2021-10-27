@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <changeSet id="20-09-2021--02-changelog--01-create-table-sm_user" author="Bohdan Krupko">
+    <changeSet id="02-changelog--01-create-table-sm_user" author="Bohdan Krupko">
         <createTable tableName="sm_user">
             <column name="id" type="integer8" defaultOnNull="false"/>
             <column name="username" type="varchar(255)" defaultOnNull="false"/>
@@ -21,14 +21,14 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--02-changelog--02-add-primary-key-for-table-sm_user" author="Bohdan Krupko">
+    <changeSet id="02-changelog--02-add-primary-key-for-table-sm_user" author="Bohdan Krupko">
         <addPrimaryKey tableName="sm_user" columnNames="id" constraintName="pk_sm_user"/>
         <rollback>
             <dropPrimaryKey tableName="sm_user" constraintName="pk_sm_user"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--02-changelog--03-create-table-role" author="Bohdan Krupko">
+    <changeSet id="02-changelog--03-create-table-role" author="Bohdan Krupko">
         <createTable tableName="role">
             <column name="id" type="integer" defaultOnNull="false"/>
             <column name="name" type="varchar(255)" defaultOnNull="false"/>
@@ -38,21 +38,21 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--02-changelog--04-add-primary-key-for-table-role" author="Bohdan Krupko">
+    <changeSet id="02-changelog--04-add-primary-key-for-table-role" author="Bohdan Krupko">
         <addPrimaryKey tableName="role" columnNames="id" constraintName="pk_role"/>
         <rollback>
             <dropPrimaryKey tableName="role" constraintName="pk_role"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--02-changelog--05-add-unique-constraint-for-table-role" author="Bohdan Krupko">
+    <changeSet id="02-changelog--05-add-unique-constraint-for-table-role" author="Bohdan Krupko">
         <addUniqueConstraint tableName="role" columnNames="name" constraintName="uq_role_name"/>
         <rollback>
             <dropUniqueConstraint tableName="role" constraintName="uq_role_name"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--02-changelog--09-create-table-user_role" author="Bohdan Krupko">
+    <changeSet id="02-changelog--09-create-table-user_role" author="Bohdan Krupko">
         <createTable tableName="user_role">
             <column name="user_id" type="integer8" defaultOnNull="false"/>
             <column name="role_id" type="integer" defaultOnNull="false"/>
@@ -62,14 +62,14 @@
         </rollback>
     </changeSet>
     
-    <changeSet id="20-09-2021--02-changelog--10-add-primary-key-for-table-user_role" author="Bohdan Krupko">
+    <changeSet id="02-changelog--10-add-primary-key-for-table-user_role" author="Bohdan Krupko">
         <addPrimaryKey tableName="user_role" columnNames="user_id,role_id" constraintName="pk_user_role"/>
         <rollback>
             <dropPrimaryKey tableName="user_role" constraintName="pk_user_role"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="20-09-2021--02-changelog--11-add-foreign-key-for-table-user_role-sm_user" author="Bohdan Krupko">
+    <changeSet id="02-changelog--11-add-foreign-key-for-table-user_role-sm_user" author="Bohdan Krupko">
         <addForeignKeyConstraint baseTableName="user_role"
                                  baseColumnNames="user_id"
                                  referencedTableName="sm_user"
