@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <changeSet id="28-09-2021--01-changelog--01-create-table__region" author="Bohdan Krupko">
+    <changeSet id="01-changelog--01-create-table__region" author="Bohdan Krupko">
         <createTable tableName="region">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="name" type="varchar(1024)"/>
@@ -15,21 +15,21 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--02-add-pk-for-table-region" author="Bohdan Krupko">
+    <changeSet id="01-changelog--02-add-pk-for-table-region" author="Bohdan Krupko">
         <addPrimaryKey tableName="region" columnNames="id" constraintName="pk_region"/>
         <rollback>
             <dropPrimaryKey tableName="region" constraintName="pk_region"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--03-add-uq-for-table-region" author="Bohdan Krupko">
+    <changeSet id="01-changelog--03-add-uq-for-table-region" author="Bohdan Krupko">
         <addUniqueConstraint tableName="region" columnNames="name" constraintName="uq_region_name"/>
         <rollback>
             <dropUniqueConstraint tableName="region" constraintName="uq_region_name"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--04-create-table-district" author="Bohdan Krupko">
+    <changeSet id="01-changelog--04-create-table-district" author="Bohdan Krupko">
         <createTable tableName="district">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="name" type="varchar(1024)"/>
@@ -40,21 +40,21 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--05-add-pk_district" author="Bohdan Krupko">
+    <changeSet id="01-changelog--05-add-pk_district" author="Bohdan Krupko">
         <addPrimaryKey tableName="district" columnNames="id" constraintName="pk_district"/>
         <rollback>
             <dropPrimaryKey tableName="district" constraintName="pk_district"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--06-add-uq_district" author="Bohdan Krupko">
+    <changeSet id="01-changelog--06-add-uq_district" author="Bohdan Krupko">
         <addUniqueConstraint tableName="district" columnNames="name,region_id" constraintName="uq_district_name_region"/>
         <rollback>
             <dropUniqueConstraint tableName="district" constraintName="uq_district_name_region"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--07-add-fk_district__region" author="Bohdan Krupko">
+    <changeSet id="01-changelog--07-add-fk_district__region" author="Bohdan Krupko">
         <addForeignKeyConstraint baseTableName="district"
                                  baseColumnNames="region_id"
                                  referencedTableName="region"
@@ -65,7 +65,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--08-create-table-place_type" author="Bohdan Krupko">
+    <changeSet id="01-changelog--08-create-table-place_type" author="Bohdan Krupko">
         <createTable tableName="place_type">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="name" type="varchar(255)"/>
@@ -75,21 +75,21 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--09-add-pk_place_type" author="Bohdan Krupko">
+    <changeSet id="01-changelog--09-add-pk_place_type" author="Bohdan Krupko">
         <addPrimaryKey tableName="place_type" columnNames="id" constraintName="pk_place_type"/>
         <rollback>
             <dropPrimaryKey tableName="place_type" constraintName="pk_place_type"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--10-add-uq_place_type" author="Bohdan Krupko">
+    <changeSet id="01-changelog--10-add-uq_place_type" author="Bohdan Krupko">
         <addUniqueConstraint tableName="place_type" columnNames="name" constraintName="uq_place_type_name" />
         <rollback>
             <dropUniqueConstraint tableName="place_type" constraintName="uq_place_type_name" />
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--11-create-table-place" author="Bohdan Krupko">
+    <changeSet id="01-changelog--11-create-table-place" author="Bohdan Krupko">
         <createTable tableName="place">
             <column name="id" type="integer8" autoIncrement="true"/>
             <column name="name" type="varchar(1024)" />
@@ -101,14 +101,14 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--12-add-pk_place" author="Bohdan Krupko">
+    <changeSet id="01-changelog--12-add-pk_place" author="Bohdan Krupko">
         <addPrimaryKey tableName="place" columnNames="id" constraintName="pk_place"/>
         <rollback>
             <dropPrimaryKey tableName="place" constraintName="pk_place"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--13-add-uq_place" author="Bohdan Krupko">
+    <changeSet id="01-changelog--13-add-uq_place" author="Bohdan Krupko">
         <addUniqueConstraint tableName="place"
                              columnNames="name,district_id,place_type_id"
                              constraintName="uq_place_name_district_type"/>
@@ -117,7 +117,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--14-add-fk_place__place_type" author="Bohdan Krupko">
+    <changeSet id="01-changelog--14-add-fk_place__place_type" author="Bohdan Krupko">
         <addForeignKeyConstraint baseTableName="place"
                                  baseColumnNames="place_type_id"
                                  referencedTableName="place_type"
@@ -128,7 +128,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--15-add-fk_place__district" author="Bohdan Krupko">
+    <changeSet id="01-changelog--15-add-fk_place__district" author="Bohdan Krupko">
         <addForeignKeyConstraint baseTableName="place"
                                  baseColumnNames="district_id"
                                  referencedTableName="district"
@@ -139,7 +139,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--16-create-table-gender" author="Bohdan Krupko">
+    <changeSet id="01-changelog--16-create-table-gender" author="Bohdan Krupko">
         <createTable tableName="gender">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="name" type="varchar(255)"/>
@@ -149,21 +149,21 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--17-add-pk_gender" author="Bohdan Krupko">
+    <changeSet id="01-changelog--17-add-pk_gender" author="Bohdan Krupko">
         <addPrimaryKey tableName="gender" columnNames="id" constraintName="pk_gender"/>
         <rollback>
             <dropPrimaryKey tableName="gender" constraintName="pk_gender"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--18-add-uq_gender" author="Bohdan Krupko">
+    <changeSet id="01-changelog--18-add-uq_gender" author="Bohdan Krupko">
         <addUniqueConstraint tableName="gender" columnNames="name" constraintName="uq_gender_name"/>
         <rollback>
             <dropUniqueConstraint tableName="gender" constraintName="uq_gender_name"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--19-create-table-age_group" author="Bohdan Krupko">
+    <changeSet id="01-changelog--19-create-table-age_group" author="Bohdan Krupko">
         <createTable tableName="age_group">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="name" type="varchar(255)"/>
@@ -175,14 +175,14 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--20-add-pk_age_group" author="Bohdan Krupko">
+    <changeSet id="01-changelog--20-add-pk_age_group" author="Bohdan Krupko">
         <addPrimaryKey tableName="age_group" columnNames="id" constraintName="pk_age_group"/>
         <rollback>
             <dropPrimaryKey tableName="age_group" constraintName="pk_age_group"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--21-create-table-eating_time" author="Bohdan Krupko">
+    <changeSet id="01-changelog--21-create-table-eating_time" author="Bohdan Krupko">
         <createTable tableName="eating_time">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="name" type="varchar(255)"/>
@@ -196,14 +196,14 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--22-add-pk_eating_time" author="Bohdan Krupko">
+    <changeSet id="01-changelog--22-add-pk_eating_time" author="Bohdan Krupko">
         <addPrimaryKey tableName="eating_time" columnNames="id" constraintName="pk_eating_time"/>
         <rollback>
             <dropPrimaryKey tableName="eating_time" constraintName="pk_eating_time"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--23-create-table-meal_info" author="Bohdan Krupko">
+    <changeSet id="01-changelog--23-create-table-meal_info" author="Bohdan Krupko">
         <createTable tableName="meal_info">
             <column name="id" type="integer" autoIncrement="true"/>
             <column name="calories" type="integer"/>
@@ -217,14 +217,14 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--24-add-pk_meal_info" author="Bohdan Krupko">
+    <changeSet id="01-changelog--24-add-pk_meal_info" author="Bohdan Krupko">
         <addPrimaryKey tableName="meal_info" columnNames="id" constraintName="pk_meal_info"/>
         <rollback>
             <dropPrimaryKey tableName="meal_info" constraintName="pk_meal_info"/>
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--25-add-fk_meal_info__gender" author="Bohdan Krupko">
+    <changeSet id="01-changelog--25-add-fk_meal_info__gender" author="Bohdan Krupko">
         <addForeignKeyConstraint baseTableName="meal_info"
                                  baseColumnNames="gender_id"
                                  referencedTableName="gender"
@@ -235,7 +235,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--26-add-fk_meal_info__age_group" author="Bohdan Krupko">
+    <changeSet id="01-changelog--26-add-fk_meal_info__age_group" author="Bohdan Krupko">
         <addForeignKeyConstraint baseTableName="meal_info"
                                  baseColumnNames="age_group_id"
                                  referencedTableName="age_group"
@@ -246,7 +246,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="28-09-2021--01-changelog--27-add-fk_meal_info__eating_time" author="Bohdan Krupko">
+    <changeSet id="01-changelog--27-add-fk_meal_info__eating_time" author="Bohdan Krupko">
         <addForeignKeyConstraint baseTableName="meal_info"
                                  baseColumnNames="eating_time_id"
                                  referencedTableName="eating_time"
