@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="01-changelog--01-add-table-organization_type" author="Bohdan Krupko">
+        <createTable tableName="organization_type">
+            <column name="id" type="integer" autoIncrement="true" />
+            <column name="name" type="varchar(255)" />
+        </createTable>
+        <rollback>
+            <dropTable tableName="organization_type"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="01-changelog--02-add-pk-for-organization_type" author="Bohdan Krupko">
+        <addPrimaryKey tableName="organization_type" columnNames="id" constraintName="pk_organization_type" />
+        <rollback>
+            <dropPrimaryKey tableName="organization_type" constraintName="pk_organization_type" />
+        </rollback>
+    </changeSet>
+
+    <changeSet id="01-changelog--03-add-table-organization" author="Bohdan Krupko">
+        <createTable tableName="organization">
+            <column name="id" type="integer8" autoIncrement="true"/>
+            <column name="place_id" type="integer8" />
+            <column name="street" type="varchar(512)" />
+            <column name="house" type="varchar(255)"/>
+            <column name="type_id" type="integer"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="organization"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="01-changelog--04-add-pk-for-organization" author="Bohdan Krupko">
+        <addPrimaryKey tableName="organization" columnNames="id" constraintName="pk_organization" />
+        <rollback>
+            <dropPrimaryKey tableName="organization" constraintName="pk_organization"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="01-changelog--05-add-fk-organization__org_type" author="Bohdan Krupko">
+        <addForeignKeyConstraint baseTableName="organization"
+                                 baseColumnNames="place_id"
+                                 referencedTableName="organization_type"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_organization__org_type"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="organization" constraintName="fk_organization__org_type" />
+        </rollback>
+    </changeSet>
+
+    <changeSet id="01-changelog--06-add-table-user_profile" author="Bohdan Krupko">
+        <createTable tableName="user_profile">
+            <column name="id" type="integer8"/>
+            <column name="surname" type="varchar(255)" />
+            <column name="firstname" type="varchar(255)" />
+            <column name="lastname" type="varchar(255)" />
+            <column name="position" type="varchar(512)" />
+            <column name="organization_id" type="integer8"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="user_profile"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="01-changelog--07-add-pk-for-user_profile" author="Bohdan Krupko">
+        <addPrimaryKey tableName="user_profile" columnNames="id" constraintName="pk_user_profile" />
+        <rollback>
+            <dropPrimaryKey tableName="user_profile" constraintName="pk_user_profile" />
+        </rollback>
+    </changeSet>
+
+    <changeSet id="01-changelog--08-ad-fk-user_profile__organization" author="Bohdan Krupko">
+        <addForeignKeyConstraint baseTableName="user_profile"
+                                 baseColumnNames="organization_id"
+                                 referencedTableName="organization"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_user_profile__org"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="user_profile" constraintName="fk_user_profile__org" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
