@@ -1,5 +1,25 @@
 server:
-  port: 9012
+  port: 9112
 spring:
   application:
     name: sm-food-service
+
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/school_meals?currentSchema=sm_food}
+    username: ${DATASOURCE_USER:sm_user}
+    password: ${DATASOURCE_PASSWORD:P@ssw0rd}
+  liquibase:
+    change-log: classpath:db-migration/changelog.xml
+
+security:
+  oauth2:
+    resource:
+      token-info-uri: ${webservices.auth-service-url}/api/v1/oauth/check_token
+      jwt.key-uri: ${webservices.auth-service-url}/api/v1/oauth/token_key
+    client:
+      client-id: web-app
+      client-secret: 123456
+
+webservices:
+  auth-service-url: ${SM_AUTH_SERVICE_URL:http://localhost/auth}
+
