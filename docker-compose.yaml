@@ -18,7 +18,7 @@ services:
     image: school-meals/sm-auth-service:latest
     container_name: sm-auth-service
     ports:
-      - "9001:9001"
+      - "7001:7001"
     depends_on:
       - db
     links:
@@ -35,7 +35,7 @@ services:
     image: school-meals/sm-dictionary-service:latest
     container_name: sm-dictionary-service
     ports:
-      - "9011:9011"
+      - "7011:7011"
     depends_on:
       - db
       - sm-auth-service
@@ -54,7 +54,7 @@ services:
     image: school-meals/sm-profile-service:latest
     container_name: sm-profile-service
     ports:
-      - "9014:9014"
+      - "7014:7014"
     depends_on:
       - db
       - sm-auth-service

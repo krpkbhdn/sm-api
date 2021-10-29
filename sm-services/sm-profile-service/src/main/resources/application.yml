@@ -1,5 +1,5 @@
 server:
-  port: 9014
+  port: 7014
 spring:
   application:
     name: sm-profile-service

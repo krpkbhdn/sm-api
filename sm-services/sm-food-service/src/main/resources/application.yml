@@ -1,5 +1,5 @@
 server:
-  port: 9112
+  port: 7012
 spring:
   application:
     name: sm-food-service
