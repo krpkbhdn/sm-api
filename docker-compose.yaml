@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: db
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - C:\docker\volume\sm-api\postgres-13.4-alpine\:/var/lib/postgresql/data
     restart: on-failure
@@ -18,7 +18,7 @@ services:
     image: school-meals/sm-auth-service:latest
     container_name: sm-auth-service
     ports:
-      - 9001:9001
+      - "9001:9001"
     depends_on:
       - db
     links:
@@ -35,7 +35,26 @@ services:
     image: school-meals/sm-dictionary-service:latest
     container_name: sm-dictionary-service
     ports:
-      - 9011:9011
+      - "9011:9011"
+    depends_on:
+      - db
+      - sm-auth-service
+    links:
+      - db
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_auth
+      DATASOURCE_USER: sm_user
+      DATASOURCE_PASSWORD: P@ssw0rd
+      SM_AUTH_SERVICE_URL: http://nginx/auth
+    restart: on-failure
+    networks:
+      - sm-api-network
+
+  sm-profile-service:
+    image: school-meals/sm-profile-service:latest
+    container_name: sm-profile-service
+    ports:
+      - "9014:9014"
     depends_on:
       - db
       - sm-auth-service
@@ -58,8 +77,8 @@ services:
     depends_on:
       - sm-auth-service
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     networks:
       - sm-api-network
 
