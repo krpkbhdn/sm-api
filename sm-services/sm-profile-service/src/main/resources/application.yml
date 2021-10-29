@@ -10,15 +10,16 @@ spring:
     password: ${DATASOURCE_PASSWORD:P@ssw0rd}
   liquibase:
     change-log: classpath:db-migration/changelog.xml
-  security:
-    oauth2:
-      resource:
-        token-info-uri: ${webservices.auth-service-url}/api/v1/oauth/check_token
-        jwt.key-uri: ${webservices.auth-service-url}/api/v1/oauth/token_key
-      client:
-        client-id: web-app
-        client-secret: 123456
 
-  webservices:
-    auth-service-url: ${SM_AUTH_SERVICE_URL:http://localhost/auth}
+security:
+  oauth2:
+    resource:
+      token-info-uri: ${webservices.auth-service-url}/api/v1/oauth/check_token
+      jwt.key-uri: ${webservices.auth-service-url}/api/v1/oauth/token_key
+    client:
+      client-id: web-app
+      client-secret: 123456
+
+webservices:
+  auth-service-url: ${SM_AUTH_SERVICE_URL:http://localhost/auth}
 
