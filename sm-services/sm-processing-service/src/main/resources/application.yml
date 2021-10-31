@@ -2,7 +2,8 @@ spring:
   kafka:
     bootstrap-servers: localhost:29092
     consumer:
-      group-id: sm-processing
+      properties:
+        group.id: sm-processing
 
   application:
     name: sm-processing-service
