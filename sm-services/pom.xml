@@ -21,6 +21,7 @@
         <module>sm-food-service</module>
         <module>sm-menu-service</module>
         <module>sm-analytic-service</module>
+        <module>sm-processing-service</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -45,6 +46,29 @@
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
             <version>${activation.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.danielwegener</groupId>
+            <artifactId>logback-kafka-appender</artifactId>
+            <version>0.2.0-RC1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback.contrib</groupId>
+            <artifactId>logback-json-classic</artifactId>
+            <version>0.1.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback.contrib</groupId>
+            <artifactId>logback-jackson</artifactId>
+            <version>0.1.5</version>
         </dependency>
 
         <dependency>

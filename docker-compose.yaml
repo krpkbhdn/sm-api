@@ -1,4 +1,4 @@
-version: "2.1"
+version: "2.3"
 
 services:
   db:
@@ -11,6 +11,33 @@ services:
     volumes:
       - C:\docker\volume\sm-api\postgres-13.4-alpine\:/var/lib/postgresql/data
     restart: on-failure
+    networks:
+      - sm-api-network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+    restart: on-failure
+    networks:
+      - sm-api-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     networks:
       - sm-api-network
 
@@ -36,6 +63,25 @@ services:
     container_name: sm-dictionary-service
     ports:
       - "7011:7011"
+    depends_on:
+      - db
+      - sm-auth-service
+    links:
+      - db
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_auth
+      DATASOURCE_USER: sm_user
+      DATASOURCE_PASSWORD: P@ssw0rd
+      SM_AUTH_SERVICE_URL: http://nginx/auth
+    restart: on-failure
+    networks:
+      - sm-api-network
+
+  sm-food-service:
+    image: school-meals/sm-food-service:latest
+    container_name: sm-food-service
+    ports:
+      - "7012:7012"
     depends_on:
       - db
       - sm-auth-service

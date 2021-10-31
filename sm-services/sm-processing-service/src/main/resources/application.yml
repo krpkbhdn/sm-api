@@ -1,0 +1,15 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:29092
+    consumer:
+      group-id: sm-processing
+
+  application:
+    name: sm-processing-service
+
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/school_meals?currentSchema=sm_processing}
+    username: ${DATASOURCE_USER:sm_user}
+    password: ${DATASOURCE_PASSWORD:P@ssw0rd}
+  liquibase:
+    change-log: classpath:db-migration/changelog.xml
