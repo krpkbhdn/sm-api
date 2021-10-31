@@ -11,9 +11,6 @@ public class WebConfiguration {
 
     @Bean
     public RestTemplate restTemplate() {
-        for (int i = 1; i < 5001; i++) {
-            log.info("some message {}", i);
-        }
         return new RestTemplate();
     }
 }
