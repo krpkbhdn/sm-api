@@ -2,4 +2,5 @@ server:
   port: 7013
 spring:
   application:
-    name: sm-menu-service
+    name: sm-menu
+

@@ -6,7 +6,7 @@ spring:
         group.id: sm-processing
 
   application:
-    name: sm-processing-service
+    name: sm-processing
 
   datasource:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/school_meals?currentSchema=sm_processing}

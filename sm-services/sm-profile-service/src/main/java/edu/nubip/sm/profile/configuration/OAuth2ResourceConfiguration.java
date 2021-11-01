@@ -1,6 +1,7 @@
 package edu.nubip.sm.profile.configuration;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.core.token.TokenService;
@@ -16,10 +17,12 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @RequiredArgsConstructor
 public class OAuth2ResourceConfiguration extends ResourceServerConfigurerAdapter {
 
+    @Value("${spring.application.name}")
+    private String appName;
 
     @Override
     public void configure(ResourceServerSecurityConfigurer config) throws Exception {
-        config.resourceId("sm-profile");
+        config.resourceId(appName);
     }
 
 }

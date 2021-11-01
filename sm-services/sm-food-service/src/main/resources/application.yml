@@ -2,7 +2,7 @@ server:
   port: 7012
 spring:
   application:
-    name: sm-food-service
+    name: sm-food
 
   datasource:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/school_meals?currentSchema=sm_food}

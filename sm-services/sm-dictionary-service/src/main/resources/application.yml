@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: sm-dictionary-service
+    name: sm-dictionary
 
   datasource:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/school_meals?currentSchema=sm_dictionary}

@@ -2,7 +2,7 @@ server:
   port: 7001
 spring:
   application:
-    name: sm-auth-service
+    name: sm-auth
   datasource:
     url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/school_meals?currentSchema=sm_auth}
     username: ${DATASOURCE_USER:sm_user}
