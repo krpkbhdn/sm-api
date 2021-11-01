@@ -7,7 +7,7 @@
 
     <changeSet id="02-changelog--01-create-table-sm_user" author="Bohdan Krupko">
         <createTable tableName="sm_user">
-            <column name="id" type="integer8" defaultOnNull="false"/>
+            <column name="id" type="integer8" defaultOnNull="false" autoIncrement="true"/>
             <column name="username" type="varchar(255)" defaultOnNull="false"/>
             <column name="email" type="varchar(255)" defaultOnNull="false"/>
             <column name="password" type="varchar(255)" defaultOnNull="false"/>

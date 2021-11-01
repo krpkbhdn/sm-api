@@ -1,15 +1,21 @@
 package edu.nubip.sm.auth.service.impl;
 
+import edu.nubip.sm.auth.domain.Role;
 import edu.nubip.sm.auth.domain.User;
+import edu.nubip.sm.auth.dto.UserCreateDto;
 import edu.nubip.sm.auth.repository.UserDetailsRepository;
+import edu.nubip.sm.auth.service.RoleService;
 import edu.nubip.sm.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +23,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserDetailsRepository userDetailsRepository;
+    private final RoleService roleService;
+
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -45,32 +53,46 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        if (user == null || user.getUsername() == null || user.getEmail() == null || user.getPassword() == null) {
-            throw new RuntimeException("User haven't required fields: " + user);
+    public User createUser(UserCreateDto userDto) throws RuntimeException {
+        if (userDto == null || userDto.getUsername() == null || userDto.getEmail() == null || userDto.getPassword() == null) {
+            throw new RuntimeException("User haven't required fields: " + userDto);
         }
-        log.debug("Request to create user: {} <{}>", user.getUsername(), user.getEmail());
-        boolean userIsExist = userDetailsRepository.existsByUsernameOrEmail(user.getUsername(), user.getEmail());
+        log.info("Request to create user: {} <{}>", userDto.getUsername(), userDto.getEmail());
+        boolean userIsExist = userDetailsRepository.existsByUsernameOrEmail(userDto.getUsername(), userDto.getEmail());
         if (userIsExist) {
-            throw new RuntimeException("User already exists: " + user.getUsername() + " <" + user.getEmail() + ">");
+            throw new RuntimeException("User already exists: " + userDto.getUsername() + " <" + userDto.getEmail() + ">");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
         user.setEnabled(true);
+
+        Set<String> roleNames;
+        if (userDto.getRoles() != null && !userDto.getRoles().isEmpty()) {
+            roleNames = userDto.getRoles();
+        } else {
+            roleNames = Set.of("ROLE_USER");
+        }
+
+        List<Role> roles = roleService.findAllByNameIn(roleNames);
+        user.setRoles(roles);
+
         User savedUser = userDetailsRepository.save(user);
-        log.debug("Created new user: {} <{}>", savedUser.getUsername(), savedUser.getEmail());
+        log.info("Created new user: {} <{}>", savedUser.getUsername(), savedUser.getEmail());
         return savedUser;
     }
 
     @Override
-    public User createUser(String username, String email, String password) {
-        User user = new User();
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPassword(password);
-        return createUser(user);
+    public User createUser(String username, String email, String password) throws RuntimeException {
+        UserCreateDto userDto = new UserCreateDto();
+        userDto.setUsername(username);
+        userDto.setEmail(email);
+        userDto.setPassword(password);
+        return createUser(userDto);
     }
 
     @Override

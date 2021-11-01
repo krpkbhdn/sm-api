@@ -1,6 +1,7 @@
 package edu.nubip.sm.auth.web;
 
 import edu.nubip.sm.auth.domain.User;
+import edu.nubip.sm.auth.dto.UserCreateDto;
 import edu.nubip.sm.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +30,14 @@ public class UserRestController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return ResponseEntity.ok(createdUser);
+    public ResponseEntity<?> createUser(@RequestBody UserCreateDto userDto) {
+        try {
+            User createdUser = userService.createUser(userDto);
+            return ResponseEntity.ok(createdUser);
+        } catch (RuntimeException e) {
+            log.error(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 
