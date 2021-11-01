@@ -11,7 +11,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .anyRequest()
-                .authenticated().and();
+                .authenticated();
     }
 
 }

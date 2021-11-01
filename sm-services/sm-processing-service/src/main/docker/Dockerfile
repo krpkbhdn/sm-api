@@ -7,7 +7,7 @@ FROM openjdk:11-jre-slim
 LABEL PROJECT_NAME=${project.artifactId} \
       PROJECT=${project.id}
 
-EXPOSE 7010
+EXPOSE 7016
 
 WORKDIR application
 COPY --from=builder application/dependencies/ ./

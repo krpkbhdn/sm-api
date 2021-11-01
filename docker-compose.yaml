@@ -69,7 +69,7 @@ services:
     links:
       - db
     environment:
-      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_auth
+      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_dictionary
       DATASOURCE_USER: sm_user
       DATASOURCE_PASSWORD: P@ssw0rd
       SM_AUTH_SERVICE_URL: http://nginx/auth
@@ -88,7 +88,7 @@ services:
     links:
       - db
     environment:
-      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_auth
+      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_food
       DATASOURCE_USER: sm_user
       DATASOURCE_PASSWORD: P@ssw0rd
       SM_AUTH_SERVICE_URL: http://nginx/auth
@@ -107,7 +107,7 @@ services:
     links:
       - db
     environment:
-      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_auth
+      DATASOURCE_URL: jdbc:postgresql://db:5432/school_meals?currentSchema=sm_profile
       DATASOURCE_USER: sm_user
       DATASOURCE_PASSWORD: P@ssw0rd
       SM_AUTH_SERVICE_URL: http://nginx/auth

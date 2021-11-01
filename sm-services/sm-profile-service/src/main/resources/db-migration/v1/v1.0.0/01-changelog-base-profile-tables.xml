@@ -25,6 +25,7 @@
     <changeSet id="01-changelog--03-add-table-organization" author="Bohdan Krupko">
         <createTable tableName="organization">
             <column name="id" type="integer8" autoIncrement="true"/>
+            <column name="name" type="varchar(1024)"/>
             <column name="place_id" type="integer8" />
             <column name="street" type="varchar(512)" />
             <column name="house" type="varchar(255)"/>

@@ -21,5 +21,5 @@ security:
       client-secret: 123456
 
 webservices:
-  auth-service-url: ${SM_AUTH_SERVICE_URL:http://localhost/auth}
+  auth-service-url: ${SM_AUTH_SERVICE_URL:http://localhost:7001}
 
